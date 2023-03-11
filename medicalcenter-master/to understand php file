@@ -1,0 +1,57 @@
+This is a PHP script that is designed to send an email. Let's go through each section of the script and explain what it does.
+
+perl
+Copy code
+$to = "rockybd1995@gmail.com";
+This line sets the email address that the email will be sent to. In this case, the email will be sent to "rockybd1995@gmail.com".
+
+bash
+Copy code
+$from = $_REQUEST['email'];
+$name = $_REQUEST['name'];
+$subject = $_REQUEST['subject'];
+$number = $_REQUEST['number'];
+$cmessage = $_REQUEST['message'];
+These lines get the values of the form fields submitted by the user using the $_REQUEST variable. The values are then stored in variables for later use.
+
+swift
+Copy code
+$headers = "From: $from";
+$headers = "From: " . $from . "\r\n";
+$headers .= "Reply-To: ". $from . "\r\n";
+$headers .= "MIME-Version: 1.0\r\n";
+$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+These lines set up the headers for the email. The "From" header specifies the email address of the sender, while the "Reply-To" header specifies where replies should be sent. The "MIME-Version" and "Content-Type" headers specify that the email will be in HTML format.
+
+bash
+Copy code
+$subject = "You have a message from your Bitmap Photography.";
+This line sets the subject of the email.
+
+shell
+Copy code
+$logo = 'img/logo.png';
+$link = '#';
+These lines set the image and link that will be used in the email body.
+
+php
+Copy code
+$body = "<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><title>Express Mail</title></head><body>";
+$body .= "<table style='width: 100%;'>";
+$body .= "<thead style='text-align: center;'><tr><td style='border:none;' colspan='2'>";
+$body .= "<a href='{$link}'><img src='{$logo}' alt=''></a><br><br>";
+$body .= "</td></tr></thead><tbody><tr>";
+$body .= "<td style='border:none;'><strong>Name:</strong> {$name}</td>";
+$body .= "<td style='border:none;'><strong>Email:</strong> {$from}</td>";
+$body .= "</tr>";
+$body .= "<tr><td style='border:none;'><strong>Subject:</strong> {$csubject}</td></tr>";
+$body .= "<tr><td></td></tr>";
+$body .= "<tr><td colspan='2' style='border:none;'>{$cmessage}</td></tr>";
+$body .= "</tbody></table>";
+$body .= "</body></html>";
+These lines set up the HTML body of the email. It includes a table with the sender's name, email address, and message.
+
+bash
+Copy code
+$send = mail($to, $subject, $body, $headers);
+This line uses the mail() function to send the email. It takes four parameters: the recipient's email address, the subject of the email, the email body, and the headers. If the email is sent successfully, the $send variable will be set to true.
